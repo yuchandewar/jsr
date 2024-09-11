@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuous Looping Slider</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-item {
+            padding: 20px;
+            flex: 1 0 100%; /* Default for 1 item visible */
+        }
+
+        .slider-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .slider-item h3 {
+            color: #4b0082;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+
+        .slider-item h2 {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .slider-item p {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* Media Query for medium screens */
+        @media (min-width: 768px) {
+            .slider-item {
+                flex: 1 0 50%; /* 2 items visible on medium screens */
+            }
+        }
+
+        /* Media Query for large screens */
+        @media (min-width: 1024px) {
+            .slider-item {
+                flex: 1 0 33.33%; /* 3 items visible on large screens */
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .slider-item {
+                flex: 1 0 25%; /* 4 items visible on extra-large screens */
+            }
+        }
+
+        /* For navigation arrows */
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+
+        .slider-arrow {
+            pointer-events: auto;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <section class="slider-container">
+        <div class="slider">
+            <!-- Original Items -->
+             
+            <div class="slider-item">
+                <a href="https://www.engineeringindia.co.in/events.html" target="_blank">
+                <img src="p1.jpg" alt="content">
+            </a>
+                <!-- <h3>SUBTITLE</h3> -->
+                <h2>Speech - वाक यज्ञः</h2>
+                <p>Showcase your speaking skills at our upcoming speech competition. All are welcome to join!</p>
+            </div>
+            <div class="slider-item">
+                <a href="https://www.engineeringindia.co.in/events.html" target="_blank">
+                <img src="p2.jpg" alt="content">
+            </a>
+                <!-- <h3>SUBTITLE</h3> -->
+                <h2>Pragyan Lecture Seriesa</h2>
+                <p>Attend insightful lectures by industry experts on various topics. Expand your knowledge!</p>
+            </div>
+            <div class="slider-item">
+                <a href="https://www.engineeringindia.co.in/events.html" target="_blank"> <img src="p3.jpg" alt="content"></a>
+                
+                <!-- <h3>SUBTITLE</h3> -->
+                <h2>Drawing Competition</h2>
+                <p>Show your creativity in our drawing competition. Open to all ages and skill levels!</p>
+            </div>
+            <div class="slider-item">
+                <a href="https://www.engineeringindia.co.in/events.html" target="_blank"><img src="p4.jpg" alt="content"></a>
+                
+                <!-- <h3>SUBTITLE</h3> -->
+                <h2>Treasure hunt - advaya shodh</h2>
+                <p>Join us for an exciting treasure hunt event where participants will explore hidden treasures.</p>
+            </div>
+
+            <!-- Duplicated first few items to create the loop effect -->
+            <div class="slider-item">
+                <a href="https://www.engineeringindia.co.in/events.html" target="_blank"><img src="p5.jpg" alt="content"></a>
+                
+                <!-- <h3>SUBTITLE</h3> -->
+                <h2>Ultimate socio technocrat </h2>
+                <p>Participate in our Socio-Tech event to discuss the intersection of society and technology.</p>
+            </div>
+           
+        </div>
+        
+        <!-- Navigation arrows -->
+        <div class="slider-nav">
+            <button class="slider-arrow prev">&larr;</button>
+            <button class="slider-arrow next">&rarr;</button>
+        </div>
+    </section>
+
+    <script>
+        const slider = document.querySelector('.slider');
+        const items = document.querySelectorAll('.slider-item');
+        const totalItems = items.length / 2; // Since we have duplicated the first few items for the loop
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        
+        let currentIndex = 0;
+        let autoSlideInterval;
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+
+        // Function to update slider position
+        function updateSlider() {
+            const itemWidth = items[0].clientWidth;
+            slider.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
+        }
+
+        // Function to check if the loop has reached the end and reset
+        function checkLoop() {
+            if (currentIndex >= totalItems) {
+                slider.style.transition = 'none'; // Disable animation to avoid glitch
+                currentIndex = 0; // Reset to the first real item
+                updateSlider();
+                setTimeout(() => {
+                    slider.style.transition = 'transform 0.5s ease-in-out'; // Re-enable animation
+                }, 20);
+            }
+        }
+
+        // Auto slide function
+        function autoSlide() {
+            currentIndex++;
+            updateSlider();
+            checkLoop();
+        }
+
+        // Set auto-slide interval
+        autoSlideInterval = setInterval(autoSlide, 5000);
+
+        // User navigation functionality
+        prevButton.addEventListener('click', () => {
+            if (currentIndex === 0) {
+                currentIndex = totalItems; // Go to the duplicated items before showing the last original one
+                slider.style.transition = 'none'; // Disable animation to avoid glitch
+                updateSlider();
+                setTimeout(() => {
+                    slider.style.transition = 'transform 0.5s ease-in-out'; // Re-enable animation
+                    currentIndex--; // Now decrease it
+                    updateSlider();
+                }, 20);
+            } else {
+                currentIndex = (currentIndex - 1 + totalItems * 2) % (totalItems * 2);
+                updateSlider();
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex++;
+            updateSlider();
+            checkLoop();
+        });
+
+        // Drag/touch functionality
+        slider.addEventListener('touchstart', touchStart);
+        slider.addEventListener('touchend', touchEnd);
+        slider.addEventListener('touchmove', touchMove);
+
+        slider.addEventListener('mousedown', touchStart);
+        slider.addEventListener('mouseup', touchEnd);
+        slider.addEventListener('mousemove', touchMove);
+        slider.addEventListener('mouseleave', touchEnd);
+
+        function touchStart(event) {
+            isDragging = true;
+            startPos = getPositionX(event);
+            clearInterval(autoSlideInterval); // Pause auto-slide on interaction
+        }
+
+        function touchEnd() {
+            isDragging = false;
+            const movedBy = currentTranslate - prevTranslate;
+
+            if (movedBy < -100 && currentIndex < totalItems * 2 - 1) {
+                currentIndex++;
+            } else if (movedBy > 100 && currentIndex > 0) {
+                currentIndex--;
+            }
+
+            updateSlider();
+            checkLoop();
+            autoSlideInterval = setInterval(autoSlide, 10000); // Restart auto-slide
+        }
+
+        function touchMove(event) {
+            if (isDragging) {
+                const currentPosition = getPositionX(event);
+                currentTranslate = prevTranslate + currentPosition - startPos;
+                slider.style.transform = `translateX(${currentTranslate}px)`;
+            }
+        }
+
+        function getPositionX(event) {
+            return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        }
+
+        window.addEventListener('resize', updateSlider);
+    </script>
+
+</body>
+</html>

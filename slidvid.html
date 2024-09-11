@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuous Looping Slider with Background Video</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background Video Styling */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            object-fit: cover;
+            z-index: -1; /* Ensure video is behind the content */
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* Optional: Darken overlay for better text visibility */
+            z-index: 1;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            z-index: 2; /* Ensure slider is on top of video */
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-item {
+            padding: 20px;
+            flex: 1 0 100%;
+        }
+
+        .slider-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .slider-item h3 {
+            color: #4b0082;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+
+        .slider-item h2 {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        .slider-item p {
+            font-size: 1rem;
+            color: #ccc;
+            margin-top: 10px;
+        }
+
+        /* Media Query for medium screens */
+        @media (min-width: 768px) {
+            .slider-item {
+                flex: 1 0 50%;
+            }
+        }
+
+        /* Media Query for large screens */
+        @media (min-width: 1024px) {
+            .slider-item {
+                flex: 1 0 33.33%;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .slider-item {
+                flex: 1 0 25%;
+            }
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+
+        .slider-arrow {
+            pointer-events: auto;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop>
+        <source src="vid1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Optional overlay to darken the video and make content stand out -->
+    <div class="overlay"></div>
+
+    <section class="slider-container">
+        <div class="slider">
+            <div class="slider-item">
+                <img src="https://dummyimage.com/720x400" alt="content">
+                <h3>SUBTITLE</h3>
+                <h2>Chichen Itza</h2>
+                <p>Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+            </div>
+            <div class="slider-item">
+                <img src="https://dummyimage.com/721x401" alt="content">
+                <h3>SUBTITLE</h3>
+                <h2>Colosseum Roma</h2>
+                <p>Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+            </div>
+            <div class="slider-item">
+                <img src="https://dummyimage.com/722x402" alt="content">
+                <h3>SUBTITLE</h3>
+                <h2>Great Pyramid of Giza</h2>
+                <p>Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+            </div>
+            <div class="slider-item">
+                <img src="https://dummyimage.com/723x403" alt="content">
+                <h3>SUBTITLE</h3>
+                <h2>San Francisco</h2>
+                <p>Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+            </div>
+
+            <!-- Duplicated items for the loop -->
+            <div class="slider-item">
+                <img src="https://dummyimage.com/720x400" alt="content">
+                <h3>SUBTITLE</h3>
+                <h2>Chichen Itza</h2>
+                <p>Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+            </div>
+            <div class="slider-item">
+                <img src="https://dummyimage.com/721x401" alt="content">
+                <h3>SUBTITLE</h3>
+                <h2>Colosseum Roma</h2>
+                <p>Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+            </div>
+        </div>
+
+        <!-- Navigation arrows -->
+        <div class="slider-nav">
+            <button class="slider-arrow prev">&larr;</button>
+            <button class="slider-arrow next">&rarr;</button>
+        </div>
+    </section>
+
+    <script>
+        const slider = document.querySelector('.slider');
+        const items = document.querySelectorAll('.slider-item');
+        const totalItems = items.length / 2;
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        
+        let currentIndex = 0;
+
+        function updateSlider() {
+            const itemWidth = items[0].clientWidth;
+            slider.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
+        }
+
+        function checkLoop() {
+            if (currentIndex >= totalItems) {
+                slider.style.transition = 'none';
+                currentIndex = 0;
+                updateSlider();
+                setTimeout(() => {
+                    slider.style.transition = 'transform 0.5s ease-in-out';
+                }, 20);
+            }
+        }
+
+        function autoSlide() {
+            currentIndex++;
+            updateSlider();
+            checkLoop();
+        }
+
+        setInterval(autoSlide, 5000);
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalItems * 2) % (totalItems * 2);
+            updateSlider();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex++;
+            updateSlider();
+            checkLoop();
+        });
+
+        window.addEventListener('resize', updateSlider);
+    </script>
+
+</body>
+</html>
