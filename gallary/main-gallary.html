@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering India PCE</title>
+    <link rel="icon" type="image/x-icon" href="../source/logo.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Fullscreen hero video section */
+        
+        .video-section {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Video should fill the entire section */
+        .video-section video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Overlay for text content */
+        .video-section .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+
+        .video-section h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .video-section p {
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+        }
+
+        .video-section a {
+            background-color: #FF6F00;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .video-section a:hover {
+            background-color: #28a745;
+        }
+
+        /* Responsive font sizes */
+        @media (max-width: 1200px) {
+            .video-section h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .video-section h1 {
+                font-size: 3rem;
+            }
+
+            .video-section p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .video-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .video-section p {
+                font-size: 1rem;
+            }
+
+            .video-section a {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .video-section h1 {
+                font-size: 2rem;
+            }
+
+            .video-section p {
+                font-size: 0.9rem;
+            }
+
+            .video-section a {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+
+    </style>
+      <style>
+        body {
+          font-family: 'Poppins', sans-serif;
+          background-color: #f0f0f0;
+        }
+    
+        /* Culturally vibrant theme */
+        .theme-orange {
+          background-color: #FF6F00;
+          color: white;
+        }
+    
+        .theme-green {
+          background-color: #FF6F00;
+          color: white;
+        }
+    
+        .text-green {
+          color: #FF6F00;
+        }
+    
+        /* Padding and alignment */
+        section {
+          padding: 60px 0;
+        }
+    
+        /* Hero Section */
+        .hero-section {
+          height: 100vh;
+          background: url('https://www.travellersofindia.com/wp-content/uploads/2021/05/The_Unique_Culture_of_India_5_Major_Traditions__Indian_Customs_TravellersofIndia.jpg') center center/cover no-repeat;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+    
+        .hero-section h1 {
+          font-size: 4rem;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+          animation: slideInLeft 2s;
+        }
+    
+        .card:hover {
+          transform: scale(1.05);
+          transition: transform 0.3s;
+        }
+    
+        /* Keyframe animation */
+        @keyframes slideInLeft {
+          0% {
+            transform: translateX(-100%);
+            opacity: 0;
+          }
+    
+          100% {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+    
+        .fade-in-up {
+          opacity: 0;
+          animation: fadeInUp 1.5s forwards;
+        }
+    
+        @keyframes fadeInUp {
+          0% {
+            transform: translateY(50px);
+            opacity: 0;
+          }
+    
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      </style>
+
+<style>
+  /* Responsive iframe container */
+  .iframe-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+  }
+
+  .iframe-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+  }
+  button:hover{
+    color: #FF6F00;
+    background-color: #f3a413;
+  }
+</style>
+
+<style>
+    .button {
+      background-color: #FF6F00;
+      color: #ffffff;
+      border-radius: 10px;
+      border: none;
+      width: 30vh;
+      height: 50px;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+  
+    /* Hover Effect */
+    .button:hover {
+      background-color: #ff8a00;
+      transform: scale(1.05);
+    }
+  
+    /* Responsive Media Query */
+    @media (max-width: 768px) {
+      .button {
+        width: 40vh;
+        font-size: 1.2rem;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .button {
+        width: 25vh;
+        font-size: 1rem;
+        height: 40px;
+      }
+    }
+  </style>
+      
+</head>
+
+<body>
+
+
+    <header data-bs-theme="tiranga" style="width: 100%;">
+        <!-- Collapse Section -->
+        <div class="collapse text-bg-dark" id="navbarHeader" style="background: linear-gradient(900deg, #FF9933, #FFFFFF, #138808);">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 col-md-7 py-4">
+                <h4 style="color: white; font-weight: bold;">About</h4>
+                <p class="text-body-primary"  style="color: rgb(177, 37, 37);">
+                  <b>Engineering India is a collaborative platform that brings together engineers from various disciplines with the shared goal of promoting community welfare. This platform provides a unique and supportive space for professionals to not only showcase their skills but also to refine and enhance them through meaningful contributions that have a significant impact on society.</b>
+                </p>
+              </div>
+              <div class="col-sm-4 offset-md-1 py-4">
+                <h4 style="color: white; font-weight: bold;">Contact</h4>
+                <ul class="list-unstyled">
+                  <li ><a href="https://www.instagram.com/engineering_india_pce?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text" style="color: rgb(177, 37, 37);">Follow on Instagram</a></li>
+                  <li><a href="mailto:engineeringindiapce@gmail.com" class="text" style="color: rgb(177, 37, 37);">Email me</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Navbar Section -->
+        <div class="navbar navbar-dark" style="background: linear-gradient(90deg, #FF9933, #FFFFFF, #138808); box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);">
+          <div class="container d-flex align-items-center justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+              <img src="../source/logo.png" width="40" height="40" aria-hidden="true" class="me-2">
+              <b style="color: rgb(177, 37, 37); ">ENGINEERING INDIA PCE</b>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation" style="margin-right: 5px;">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+
+
+
+ <!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<section>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Event Gallery with Swipe Gesture</title>
+      <style>
+          * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+          }
+  
+          body {
+              font-family: Arial, sans-serif;
+              background: linear-gradient(180deg, rgb(255, 119, 0) 0%, rgb(255, 255, 255) 50%, rgb(0, 255, 17) 100%);
+              color: white;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              /* min-height: 100vh; */
+          }
+  
+          .gallery-wrapper-847 {
+              width: 100%;
+              max-width: 1200px;
+              padding: 20px;
+              text-align: center;
+          }
+  
+          .main-img-box-203 {
+              position: relative;
+              width: 100%;
+              margin-bottom: 20px;
+          }
+  
+          .main-img-box-203 img {
+              width: 100%;
+              height: auto;
+              border-radius: 8px;
+          }
+  
+          .arrow-btn-504 {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              font-size: 2rem;
+              color: white;
+              cursor: pointer;
+              background-color: rgba(0, 0, 0, 0.5);
+              padding: 10px;
+              border-radius: 50%;
+          }
+  
+          .prev-btn-351 {
+              left: 10px;
+          }
+  
+          .next-btn-781 {
+              right: 10px;
+          }
+  
+          .thumbnail-box-909 {
+              display: flex;
+              justify-content: center;
+              flex-wrap: wrap;
+          }
+  
+          .thumbnail-box-909 img {
+              width: 70px;
+              height: 70px;
+              margin: 5px;
+              border-radius: 8px;
+              cursor: pointer;
+              transition: transform 0.3s;
+          }
+  
+          .thumbnail-box-909 img:hover {
+              transform: scale(1.1);
+          }
+  
+          .event-info-112 {
+              background-color: rgba(0, 0, 0, 0.8);
+              padding: 15px;
+              border-radius: 8px;
+              margin-top: 20px;
+              text-align: center;
+          }
+  
+          .event-info-112 p {
+              margin: 5px 0;
+          }
+  
+          /* Media Queries for Larger Screens */
+          @media (min-width: 1024px) {
+              .main-img-box-203 {
+                  width: 35%;  /* 35% width on large screens */
+              }
+          }
+  
+          /* Media Queries for Small Screens */
+          @media (max-width: 600px) {
+              .main-img-box-203 img {
+                  width: 100%;
+              }
+          }
+      </style>
+  </head>
+  <body>
+  
+  
+      
+      <div class="gallery-wrapper-847">
+          <!-- Main Image Container -->
+          <center>
+              <div class="main-img-box-203" id="img-box-main-674">
+                  <img id="primary-img-992" src="" alt="Main Event Image">
+                  <div class="arrow-btn-504 prev-btn-351" onclick="previousImg635()">&#10094;</div>
+                  <div class="arrow-btn-504 next-btn-781" onclick="nextImg819()">&#10095;</div>
+              </div>
+          </center>
+  
+          <!-- Thumbnail Images -->
+          <div class="thumbnail-box-909" id="thumbnail-wrap-255">
+              <!-- Thumbnails will be generated dynamically -->
+          </div>
+  
+          <!-- Event Details Section -->
+          <div class="event-info-112" id="event-details-box-111">
+              <h2 id="event-title-983"></h2>
+              <!-- Optional attributes will be hidden if empty -->
+              <p id="event-date-384" style="display: none;"><strong>Date:</strong> <span id="date-detail-587"></span></p>
+              <p id="event-time-789" style="display: none;"><strong>Time:</strong> <span id="time-detail-467"></span></p>
+              <p id="event-place-100" style="display: none;"><strong>Place:</strong> <span id="place-detail-923"></span></p>
+              <p id="event-guest-432" style="display: none;"><strong>Special Guest:</strong> <span id="guest-detail-654"></span></p>
+              <p id="event-info-642" style="display: none;"><strong>Information:</strong> <span id="info-detail-299"></span></p>
+          </div>
+      </div>
+  
+      <script>
+          // Get event name from the URL
+          const paramsURL674 = new URLSearchParams(window.location.search);
+          const currentEvent943 = paramsURL674.get('event') || 'event1';
+  
+          // Define different event image counts
+          const imgCountEvents711 = {
+              event1: 5,   // Event 1 has 5 images
+              event2: 4,  // Event 2 has 10 images
+              event3: 3, 
+              event4: 3,   // Event 1 has 5 images
+              event5: 2,  // Event 2 has 10 images
+              event6: 3, 
+              event7: 6,   // Event 1 has 5 images
+              event8: 4,  // Event 2 has 10 images
+              event9: 5,   
+                // Event 3 has 5 images
+          };
+  
+          let imgCurrentIndex557 = 1;
+  
+          // Set the total number of images based on the event
+          const imgTotalCount816 = imgCountEvents711[currentEvent943] || 10;
+  
+          const imgMainElement837 = document.getElementById('primary-img-992');
+          const thumbContainer933 = document.getElementById('thumbnail-wrap-255');
+  
+          // Event details for different events (with optional attributes)
+          const eventDetails418 = {
+              event1: {
+                  title: "Blood CheckUp Camp",
+                  date: "March 02, 2023",
+                  time: "",
+                  place: "First Year Department PCE",
+                  guest: "",
+                  info: "Engineering India PCE organized Free Blood Checkup camp with the help of Lokmanya Diagnostics on 2nd march2024 in the campus of Priyadarshini College of Engineering . Over 400 students as well as teachers and staff members have take advantage of it and  the key highlight of this camp it brings the awareness about blood counts & It helps them for their treatment as well."
+              },
+              event2: {
+                  title: "Prof. Rajendra Singh Science Exploratory invigilation ",
+                  date: "29th & 31st march 2024",
+                  place: "Prof. Rajendra Singh Science Exploratory",
+                  info: "At Prof. Rajendra Singh Science Exploratory we get opportunity to work as a invigilators on 29th & 31st march 2024. It was been great experience to work as a invigilators and specially in exploratory. We  also learn science theorem practically"
+              },
+              event3: {
+                  title: "Nagpur Flood Relief Camp",
+                  date:"24rd Sept 2023",
+                  place:"Nagpur",
+                  info:"The Nagpur Flood was occurred in the city Nagpur .On September24,2023. The flood causes death & economic  destruction with several hundred people being evacuated in various parts of the city. Our Engineering India PCE team visited the flood influenced area and with the help of locality we organized relief camp & provided the needed things and help them in evacuation."
+              },
+              event4: {
+                  title: "Abhyudaya",
+                  date: "March 02, 2023",
+                  time: "",
+                  place: "VNIT",
+                  guest: "",
+                  info: "Abhyudaya is one of the grand and prestigious events hosted by engineering colleges across Nagpur. It serves as a platform where students from various technical institutions come together to showcase their talents, skills, and innovations."
+              },
+              event5: {
+                  title: "पुण्यश्लोक राजमाता अहिल्यादेवी होळकर ॥",
+                  date: "18 Aug, 2024",
+                  time: "",
+                  place: "Kavivarya Suresh Bhat Auditorium Reshimbag",
+                  guest: "",
+                  info: "On the occasion of 3rd century Punya shlok Ahilyadevi Holkar, mudra event conducted the drama.. On this event, we were honored to celebrate the Legacy of Ahilyadevi Holkar: An Evening of Drama and Culture at the Matoshree Event."
+              },
+              event6: {
+                  title: "Street Teaching",
+                  date: "",
+                  time: "",
+                  place: "JhansiRani Square",
+                  guest: "",
+                  info: "We used to visit the unprivileged students and contribute our knowledge to them and give them the accessories like notebooks, pen and pencils. We sometimes gave chocolates and celebrate our birthdays with them to make the occasion memorable."
+              },
+              event7: {
+                  title: "Kargil Vijay Diwas",
+                  date: "26th July 2024",
+                  place: "TNP Hall PCE",
+                  info: "On the occasion of 25th Kargil Vijay Diwas on 26th July 2024 Engineering India PCE organised the Guest lecture and flagshow on the campus of Priyadarshini College Of Engineering. It is been pleasure to have Brigadier Dr.Sunil V.Gaopande (Retd.) with us as a chief guest. Also Ex. Indian Air Force Officer Mahesh Ambokar & Sunil Kemdeo sir with us."
+              },
+              event8: {
+                  title: "Team Meets",
+                  date: "Weekly",
+                  place: "PCE",
+                  info: "Engineering India is a platform that brings together engineering professionals and students to discuss advancements, innovations, and trends in the field. Weekly meets provide an opportunity for networking, knowledge-sharing, and collaboration on cutting-edge projects and research."
+              },
+
+          };
+  
+          // Function to update the main image
+          function updateMainImg129(index) {
+              imgMainElement837.src = `${currentEvent943}/p${index}.jpg`;
+          }
+  
+          // Function for next arrow
+          function nextImg819() {
+              imgCurrentIndex557++;
+              if (imgCurrentIndex557 > imgTotalCount816) {
+                  imgCurrentIndex557 = 1;
+              }
+              updateMainImg129(imgCurrentIndex557);
+          }
+  
+          // Function for previous arrow
+          function previousImg635() {
+              imgCurrentIndex557--;
+              if (imgCurrentIndex557 < 1) {
+                  imgCurrentIndex557 = imgTotalCount816;
+              }
+              updateMainImg129(imgCurrentIndex557);
+          }
+  
+          // Function to generate thumbnails
+          function generateThumbnails721() {
+              thumbContainer933.innerHTML = "";  // Clear previous thumbnails
+              for (let i = 1; i <= imgTotalCount816; i++) {
+                  const thumbnailImg = document.createElement("img");
+                  thumbnailImg.src = `${currentEvent943}/p${i}.jpg`;
+                  thumbnailImg.alt = `Thumbnail ${i}`;
+                  thumbnailImg.addEventListener('click', function () {
+                      imgCurrentIndex557 = i;
+                      updateMainImg129(i);
+                  });
+                  thumbContainer933.appendChild(thumbnailImg);
+              }
+          }
+  
+          // Load event details and gallery on page load
+          function loadEventData792() {
+              const details = eventDetails418[currentEvent943];
+  
+              // Update event title
+              document.getElementById('event-title-983').textContent = details.title || 'Untitled Event';
+  
+              // Update and show/hide optional attributes
+              updateEventAttr837('event-date-384', 'date-detail-587', details.date);
+              updateEventAttr837('event-time-789', 'time-detail-467', details.time);
+              updateEventAttr837('event-place-100', 'place-detail-923', details.place);
+              updateEventAttr837('event-guest-432', 'guest-detail-654', details.guest);
+              updateEventAttr837('event-info-642', 'info-detail-299', details.info);
+  
+              // Load the first image and thumbnails
+              updateMainImg129(imgCurrentIndex557);
+              generateThumbnails721();
+          }
+  
+          // Function to update and show/hide event attributes
+          function updateEventAttr837(elementId, valueElementId, value) {
+              const element = document.getElementById(elementId);
+              const valueElement = document.getElementById(valueElementId);
+  
+              if (value) {
+                  valueElement.textContent = value;
+                  element.style.display = 'block';
+              } else {
+                  element.style.display = 'none';
+              }
+          }
+  
+          // Swipe gesture handling
+          let touchStartX237 = 0;
+          let touchEndX502 = 0;
+  
+          const mainImgContainer642 = document.getElementById('img-box-main-674');
+  
+          mainImgContainer642.addEventListener('touchstart', function (e) {
+              touchStartX237 = e.changedTouches[0].screenX;
+          });
+  
+          mainImgContainer642.addEventListener('touchend', function (e) {
+              touchEndX502 = e.changedTouches[0].screenX;
+              handleSwipeGesture468();
+          });
+  
+          function handleSwipeGesture468() {
+              if (touchEndX502 < touchStartX237) {
+                  nextImg819();
+              }
+              if (touchEndX502 > touchStartX237) {
+                  previousImg635();
+              }
+          }
+  
+          // Initialize the gallery
+          window.onload = loadEventData792;
+      </script>
+  </body>
+  </html>
+  
+
+
+
+</section>
+
+
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
